@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MyShoppingList.Models.PERSON>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>People</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="ShoppingLists" class="table table-bordered table-striped" border="0">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lname)
+        </th>
+        <th>
+            Shielding
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SHIELDING.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

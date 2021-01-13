@@ -1,0 +1,62 @@
+﻿@model MyShoppingList.Models.RECIPE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Recipe Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+    <h3>Ingredients</h3>
+    <table class="table table-bordered table-striped" border="0">
+        <thead>
+            <tr>
+                <th>
+                    Item
+                </th>
+                <th>
+                    Brand
+                </th>
+                <th>
+                    Add to List
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.JOINERs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.item)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brand)
+                </td>
+                <td>
+                    @Html.ActionLink("Add", "Create", "LISTs")
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

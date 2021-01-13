@@ -1,0 +1,55 @@
+﻿@model MyShoppingList.Models.LIST
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete List Item</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEM.item1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEM.item1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSON.fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSON.fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS.status1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS.status1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

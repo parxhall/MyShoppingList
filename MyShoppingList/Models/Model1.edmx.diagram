@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ac2838a1594341eb8149800fdc7d42b4" Name="Diagram1">
+        <EntityTypeShape EntityType="ShoppingDatabaseModel.ITEM" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDatabaseModel.JOINER" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDatabaseModel.LIST" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDatabaseModel.PERSON" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDatabaseModel.RECIPE" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDatabaseModel.SHIELDING" Width="1.5" PointX="1.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingDatabaseModel.STATUS" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="ShoppingDatabaseModel.FK__JOINER__item_id__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDatabaseModel.FK__LIST__item_id__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDatabaseModel.FK__JOINER__recipe_i__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDatabaseModel.FK__LIST__person_id__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDatabaseModel.FK__LIST__status_id__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoppingDatabaseModel.FK__PERSON__shieldin__33D4B598" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ShoppingDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ITEMS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item" Type="varchar" MaxLength="500" />
+          <Property Name="brand" Type="varchar" MaxLength="500" />
+          <Property Name="size" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="JOINER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_id" Type="int" />
+          <Property Name="recipe_id" Type="int" />
+        </EntityType>
+        <EntityType Name="LIST">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_id" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="person_id" Type="int" />
+          <Property Name="status_id" Type="int" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="250" />
+          <Property Name="lname" Type="varchar" MaxLength="250" />
+          <Property Name="shielding_id" Type="int" />
+        </EntityType>
+        <EntityType Name="RECIPE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="250" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SHIELDING">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK__JOINER__item_id__2F10007B">
+          <End Role="ITEMS" Type="Self.ITEMS" Multiplicity="0..1" />
+          <End Role="JOINER" Type="Self.JOINER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEMS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JOINER">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JOINER__recipe_i__300424B4">
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="0..1" />
+          <End Role="JOINER" Type="Self.JOINER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JOINER">
+              <PropertyRef Name="recipe_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIST__item_id__31EC6D26">
+          <End Role="ITEMS" Type="Self.ITEMS" Multiplicity="0..1" />
+          <End Role="LIST" Type="Self.LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEMS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIST__person_id__32E0915F">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="0..1" />
+          <End Role="LIST" Type="Self.LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIST__status_id__30F848ED">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="0..1" />
+          <End Role="LIST" Type="Self.LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERSON__shieldin__33D4B598">
+          <End Role="SHIELDING" Type="Self.SHIELDING" Multiplicity="0..1" />
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIELDING">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PERSON">
+              <PropertyRef Name="shielding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShoppingDatabaseModelStoreContainer">
+          <EntitySet Name="ITEMS" EntityType="Self.ITEMS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JOINER" EntityType="Self.JOINER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIST" EntityType="Self.LIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECIPE" EntityType="Self.RECIPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHIELDING" EntityType="Self.SHIELDING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__JOINER__item_id__2F10007B" Association="Self.FK__JOINER__item_id__2F10007B">
+            <End Role="ITEMS" EntitySet="ITEMS" />
+            <End Role="JOINER" EntitySet="JOINER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JOINER__recipe_i__300424B4" Association="Self.FK__JOINER__recipe_i__300424B4">
+            <End Role="RECIPE" EntitySet="RECIPE" />
+            <End Role="JOINER" EntitySet="JOINER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIST__item_id__31EC6D26" Association="Self.FK__LIST__item_id__31EC6D26">
+            <End Role="ITEMS" EntitySet="ITEMS" />
+            <End Role="LIST" EntitySet="LIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIST__person_id__32E0915F" Association="Self.FK__LIST__person_id__32E0915F">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="LIST" EntitySet="LIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIST__status_id__30F848ED" Association="Self.FK__LIST__status_id__30F848ED">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="LIST" EntitySet="LIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERSON__shieldin__33D4B598" Association="Self.FK__PERSON__shieldin__33D4B598">
+            <End Role="SHIELDING" EntitySet="SHIELDING" />
+            <End Role="PERSON" EntitySet="PERSON" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShoppingDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ITEM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="size" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JOINERs" Relationship="Self.FK__JOINER__item_id__2F10007B" FromRole="ITEMS" ToRole="JOINER" />
+          <NavigationProperty Name="LISTs" Relationship="Self.FK__LIST__item_id__31EC6D26" FromRole="ITEMS" ToRole="LIST" />
+        </EntityType>
+        <EntityType Name="JOINER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="recipe_id" Type="Int32" />
+          <NavigationProperty Name="ITEM" Relationship="Self.FK__JOINER__item_id__2F10007B" FromRole="JOINER" ToRole="ITEMS" />
+          <NavigationProperty Name="RECIPE" Relationship="Self.FK__JOINER__recipe_i__300424B4" FromRole="JOINER" ToRole="RECIPE" />
+        </EntityType>
+        <EntityType Name="LIST">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="person_id" Type="Int32" />
+          <Property Name="status_id" Type="Int32" />
+          <NavigationProperty Name="ITEM" Relationship="Self.FK__LIST__item_id__31EC6D26" FromRole="LIST" ToRole="ITEMS" />
+          <NavigationProperty Name="PERSON" Relationship="Self.FK__LIST__person_id__32E0915F" FromRole="LIST" ToRole="PERSON" />
+          <NavigationProperty Name="STATUS" Relationship="Self.FK__LIST__status_id__30F848ED" FromRole="LIST" ToRole="STATUS" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="shielding_id" Type="Int32" />
+          <NavigationProperty Name="LISTs" Relationship="Self.FK__LIST__person_id__32E0915F" FromRole="PERSON" ToRole="LIST" />
+          <NavigationProperty Name="SHIELDING" Relationship="Self.FK__PERSON__shieldin__33D4B598" FromRole="PERSON" ToRole="SHIELDING" />
+        </EntityType>
+        <EntityType Name="RECIPE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JOINERs" Relationship="Self.FK__JOINER__recipe_i__300424B4" FromRole="RECIPE" ToRole="JOINER" />
+        </EntityType>
+        <EntityType Name="SHIELDING">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="People" Relationship="Self.FK__PERSON__shieldin__33D4B598" FromRole="SHIELDING" ToRole="PERSON" />
+        </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LISTs" Relationship="Self.FK__LIST__status_id__30F848ED" FromRole="STATUS" ToRole="LIST" />
+        </EntityType>
+        <Association Name="FK__JOINER__item_id__2F10007B">
+          <End Role="ITEMS" Type="Self.ITEM" Multiplicity="0..1" />
+          <End Role="JOINER" Type="Self.JOINER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEMS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JOINER">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIST__item_id__31EC6D26">
+          <End Role="ITEMS" Type="Self.ITEM" Multiplicity="0..1" />
+          <End Role="LIST" Type="Self.LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEMS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JOINER__recipe_i__300424B4">
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="0..1" />
+          <End Role="JOINER" Type="Self.JOINER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIPE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JOINER">
+              <PropertyRef Name="recipe_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIST__person_id__32E0915F">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="0..1" />
+          <End Role="LIST" Type="Self.LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIST__status_id__30F848ED">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="0..1" />
+          <End Role="LIST" Type="Self.LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERSON__shieldin__33D4B598">
+          <End Role="SHIELDING" Type="Self.SHIELDING" Multiplicity="0..1" />
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIELDING">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PERSON">
+              <PropertyRef Name="shielding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShoppingDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ITEMS" EntityType="Self.ITEM" />
+          <EntitySet Name="JOINERs" EntityType="Self.JOINER" />
+          <EntitySet Name="LISTs" EntityType="Self.LIST" />
+          <EntitySet Name="People" EntityType="Self.PERSON" />
+          <EntitySet Name="RECIPEs" EntityType="Self.RECIPE" />
+          <EntitySet Name="SHIELDINGs" EntityType="Self.SHIELDING" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" />
+          <AssociationSet Name="FK__JOINER__item_id__2F10007B" Association="Self.FK__JOINER__item_id__2F10007B">
+            <End Role="ITEMS" EntitySet="ITEMS" />
+            <End Role="JOINER" EntitySet="JOINERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIST__item_id__31EC6D26" Association="Self.FK__LIST__item_id__31EC6D26">
+            <End Role="ITEMS" EntitySet="ITEMS" />
+            <End Role="LIST" EntitySet="LISTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JOINER__recipe_i__300424B4" Association="Self.FK__JOINER__recipe_i__300424B4">
+            <End Role="RECIPE" EntitySet="RECIPEs" />
+            <End Role="JOINER" EntitySet="JOINERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIST__person_id__32E0915F" Association="Self.FK__LIST__person_id__32E0915F">
+            <End Role="PERSON" EntitySet="People" />
+            <End Role="LIST" EntitySet="LISTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIST__status_id__30F848ED" Association="Self.FK__LIST__status_id__30F848ED">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="LIST" EntitySet="LISTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERSON__shieldin__33D4B598" Association="Self.FK__PERSON__shieldin__33D4B598">
+            <End Role="SHIELDING" EntitySet="SHIELDINGs" />
+            <End Role="PERSON" EntitySet="People" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShoppingDatabaseModelStoreContainer" CdmEntityContainer="ShoppingDatabaseEntities">
+          <EntitySetMapping Name="ITEMS">
+            <EntityTypeMapping TypeName="ShoppingDatabaseModel.ITEM">
+              <MappingFragment StoreEntitySet="ITEMS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item1" ColumnName="item" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="size" ColumnName="size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JOINERs">
+            <EntityTypeMapping TypeName="ShoppingDatabaseModel.JOINER">
+              <MappingFragment StoreEntitySet="JOINER">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LISTs">
+            <EntityTypeMapping TypeName="ShoppingDatabaseModel.LIST">
+              <MappingFragment StoreEntitySet="LIST">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="ShoppingDatabaseModel.PERSON">
+              <MappingFragment StoreEntitySet="PERSON">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="shielding_id" ColumnName="shielding_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIPEs">
+            <EntityTypeMapping TypeName="ShoppingDatabaseModel.RECIPE">
+              <MappingFragment StoreEntitySet="RECIPE">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHIELDINGs">
+            <EntityTypeMapping TypeName="ShoppingDatabaseModel.SHIELDING">
+              <MappingFragment StoreEntitySet="SHIELDING">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUS">
+            <EntityTypeMapping TypeName="ShoppingDatabaseModel.STATUS">
+              <MappingFragment StoreEntitySet="STATUS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status1" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

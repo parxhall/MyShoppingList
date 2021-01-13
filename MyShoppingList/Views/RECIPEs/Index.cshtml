@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MyShoppingList.Models.RECIPE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Recipes</h2>
+
+<table id="ShoppingLists" class="table table-bordered table-striped" border="0">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.id }) 
+            </td>
+        </tr>
+    }
+
+</table>

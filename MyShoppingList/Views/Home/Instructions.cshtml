@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Instructions";
+}
+<h2>@ViewBag.Title</h2>
+<address>
+    <strong>Support:</strong>   <a href="mailto:4hallp41@solent.ac.uk">4hallp41@solent.ac.uk</a><br />
+</address>
+
+<h3>Shopping List</h3>
+<p>
+    Your shopping list with be the main page in this website. Here you'll be able to view your shopping list, <br />
+    add more items, edit entries and delete items as required. You can also search and sort you list view <br />
+    to only show items for one specific person. <br />
+    You can view your shopping list @Html.ActionLink("here.", "Index", "LISTs")<br />
+</p>
+<hr />
+<h3>Items</h3>
+<p>
+    This page will be used to store all the items you regulary use; this list will then become the options you <br />
+    can select in the drop down for your shopping list. There is the potential in the future to import data <br />
+    from big brand shops, however in the intial release we saw it preferable to input only item you know you <br />
+    use around the house to remove all the disarray of thousands of items to pick from. <br />
+    You can view your items inventory @Html.ActionLink("here.", "Index", "ITEMs")<br />
+</p>
+<hr />
+<h3>Recipes</h3>
+<p>
+    The recipes page stores a series of recipes that you can view from the main page with a brief description.<br />
+    If you are interested select details and you can view the ingredients required and add them to your list from <br />
+    here. Currently we have a pre-set recipes but if you would like anymore simple send and <a href="mailto:4hallp41@solent.ac.uk">email</a> to our  <br />
+    support team with the detail of your recipe and it will be added.<br />
+    You can view your recipes @Html.ActionLink("here.", "Index", "RECIPEs")<br />
+</p>
+<hr />
+<h3>People</h3>
+<p>
+    Before you start adding items to your list it is important that you set up yourself as a user so that you may <br />
+    add the items to your list. You can also add other individuals to create lists for them i.e. people you'll be <br />
+    buying Christmas gifts for. Given the current state of the world I have also added the option to show whether <br />
+    a contact is shielding as they will not be able to go shopping for themselves therefore they would require <br />
+    someone else to make a list for them.<br />
+    You can view people @Html.ActionLink("here.", "Index", "People")<br />
+</p>
